@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Simple lambda function
+
+Resources:
+  LambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: cds-proton-lambda_function
+      CodeUri: "{{service_instance.inputs.code_uri}}"
+      Handler: "{{service_instance.inputs.resource_handler}}"
+      Runtime: "{{service_instance.inputs.lambda_runtime}}"
+      Timeout: {{service_instance.inputs.lambda_timeout}}
+      MemorySize: {{service_instance.inputs.lambda_memory}}
+
+
+Outputs:
+  LambdaFunctionARN:
+    Description: Lambda function ARN.
+    Value:
+      Fn::GetAtt:
+        - LambdaFunction
+        - Arn
+  LambdaRuntime:
+    Description: "The lambda runtime"
+    Value: "{{service_instance.inputs.lambda_runtime}}"
