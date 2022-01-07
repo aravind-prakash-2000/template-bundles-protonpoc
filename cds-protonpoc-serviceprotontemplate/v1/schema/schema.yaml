@@ -50,6 +50,6 @@ schema:
           maxLength: 200
         lambda_function_uri:
           type: string
-          default: s3://cds-protonpoc-lambda-service-template/lambda_function.zip
+          default: s3://cds-protonpoc-s3bucket/python_lambda_function/lambda_function.zip
           minLength: 1
           maxLength: 200

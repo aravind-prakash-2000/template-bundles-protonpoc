@@ -264,7 +264,9 @@ Resources:
                     "post_build": {
                       "commands": [
                         "aws proton --region $AWS_DEFAULT_REGION get-service --name $service_name | jq -r .service.spec > service.yaml",
-                        "yq w service.yaml 'instances[*].spec.code_uri' \"$FUNCTION_URI\" > rendered_service.yaml"
+                        "yq w service.yaml 'instances[*].spec.code_uri' \"$FUNCTION_URI\" > rendered_service.yaml",
+                        "rendered_service_file_location=s3://$bucket_name/rendered_service/rendered_service.yaml",
+                        "aws s3 cp rendered_service.yaml $rendered_service_file_location"
                       ]
                     }
                   },
